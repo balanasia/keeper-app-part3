@@ -39,19 +39,21 @@ function App() {
   function addNote(input) {
     if (name === "title") {
       changeTitle((prevValue) => {
-        return [...prevValue, inputText];
+        return [...prevValue, titleInput];
       });
     } else if (name === "content") {
       changeInput((prevValue) => {
-        return [...prevValue, inputValue];
+        return [...prevValue, textInput];
       });
     }
+    console.log(titleInput);
+    console.log(textInput);
   }
 
   return (
     <div>
       <Header />
-      <CreateArea onChange={handleChange} onClick={addNote} value={inputText} />
+      <CreateArea onChange={handleChange} onClick={addNote} />
       <Note key={1} title="Note title" content="Note content" />
       <Footer />
     </div>

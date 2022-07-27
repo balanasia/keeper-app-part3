@@ -16,34 +16,12 @@ import React, { useState } from "react";
 //https://pogqj.csb.app/
 
 function CreateArea(props) {
-  const [titleInput, changeTitle] = useState("");
-  const [textInput, changeInput] = useState("");
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    if (name === "title") {
-      changeTitle((prevValue) => {
-        return [...prevValue, value];
-      });
-    } else if (name === "content") {
-      changeInput((prevValue) => {
-        return [...prevValue, value];
-      });
-    }
-  }
-
   return (
     <div>
       <form>
-        <input
-          onChange={handleChange}
-          value={titleInput}
-          name="title"
-          placeholder="Title"
-        />
+        <input onChange={props.handleChange} name="title" placeholder="Title" />
         <textarea
-          onChange={handleChange}
-          value={textInput}
+          onChange={props.handleChange}
           name="content"
           placeholder="Take a note..."
           rows="3"

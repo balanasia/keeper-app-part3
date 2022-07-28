@@ -16,7 +16,7 @@ import React, { useState } from "react";
 //https://pogqj.csb.app/
 
 function CreateArea(props) {
-  const [notes, setNotes] = useState({
+  const [input, setInput] = useState({
     title: "",
     content: ""
   });
@@ -24,13 +24,17 @@ function CreateArea(props) {
   function handleChange(event) {
     const { name, value } = event.target;
 
-    setNotes((prevValue) => {
+    setInput((prevValue) => {
       return {
         ...prevValue,
         [name]: value
       };
     });
-    console.log(notes);
+  }
+
+  function submitNote(event) {
+    props.onAdd(input);
+    event.preventDefault();
   }
 
   return (
@@ -43,7 +47,7 @@ function CreateArea(props) {
           placeholder="Take a note..."
           rows="3"
         />
-        <button>Add</button>
+        <button onClick={submitNote}>Add</button>
       </form>
     </div>
   );

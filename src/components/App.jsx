@@ -20,40 +20,10 @@ import CreateArea from "./CreateArea";
 //https://pogqj.csb.app/
 
 function App() {
-  const [titleInput, changeTitle] = useState("");
-  const [textInput, changeInput] = useState("");
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    if (name === "title") {
-      changeTitle((prevValue) => {
-        return [...prevValue, value];
-      });
-    } else if (name === "content") {
-      changeInput((prevValue) => {
-        return [...prevValue, value];
-      });
-    }
-  }
-
-  function addNote(input) {
-    if (name === "title") {
-      changeTitle((prevValue) => {
-        return [...prevValue, titleInput];
-      });
-    } else if (name === "content") {
-      changeInput((prevValue) => {
-        return [...prevValue, textInput];
-      });
-    }
-    console.log(titleInput);
-    console.log(textInput);
-  }
-
   return (
     <div>
       <Header />
-      <CreateArea onChange={handleChange} onClick={addNote} />
+      <CreateArea />
       <Note key={1} title="Note title" content="Note content" />
       <Footer />
     </div>

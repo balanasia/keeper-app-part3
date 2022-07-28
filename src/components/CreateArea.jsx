@@ -16,17 +16,19 @@ import React, { useState } from "react";
 //https://pogqj.csb.app/
 
 function CreateArea(props) {
+  const [notes, setNotes] = useState({
+    title: "",
+    content: ""
+  });
+
+  function handleChange(event) {}
+
   return (
     <div>
       <form>
-        <input onChange={props.handleChange} name="title" placeholder="Title" />
-        <textarea
-          onChange={props.handleChange}
-          name="content"
-          placeholder="Take a note..."
-          rows="3"
-        />
-        <button onClick={() => props.onAdd(addItem)}>Add</button>
+        <input name="title" placeholder="Title" />
+        <textarea name="content" placeholder="Take a note..." rows="3" />
+        <button>Add</button>
       </form>
     </div>
   );

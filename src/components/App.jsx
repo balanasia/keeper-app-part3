@@ -28,7 +28,7 @@ function App() {
     });
   }
 
-  function deleteItem(id) {
+  function deleteNote(id) {
     setNotes((prevItems) => {
       return prevItems.filter((item, index) => {
         return index !== id;
@@ -46,7 +46,7 @@ function App() {
           id={index}
           title={noteItem.title}
           content={noteItem.content}
-          onChecked={deleteItem}
+          onDelete={deleteNote}
         />
       ))}
       <Footer />

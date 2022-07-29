@@ -20,6 +20,7 @@ function Note(props) {
     <div className="note">
       <h1>{props.title}</h1>
       <p>{props.content}</p>
+      {console.log(props.title)}
       <button>DELETE</button>
     </div>
   );

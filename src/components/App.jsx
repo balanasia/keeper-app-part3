@@ -20,15 +20,35 @@ import CreateArea from "./CreateArea";
 //https://pogqj.csb.app/
 
 function App() {
+  const [notes, setNotes] = useState([]);
+
   function addNote(note) {
-    console.log(note);
+    setNotes((prevValue) => {
+      return [...prevValue, note];
+    });
+  }
+
+  function deleteItem(id) {
+    setNotes((prevItems) => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
   }
 
   return (
     <div>
       <Header />
       <CreateArea onAdd={addNote} />
-      <Note key={1} title="Note title" content="Note content" />
+      {notes.map((noteItem, index) => (
+        <Note
+          key={index}
+          id={index}
+          title={noteItem.title}
+          content={noteItem.content}
+          onChecked={deleteItem}
+        />
+      ))}
       <Footer />
     </div>
   );

@@ -1,22 +1,12 @@
 import React, { useState } from "react";
-
-//CHALLENGE:
-//1. Implement the add note functionality.
-//- Create a constant that keeps track of the title and content.
-//- Pass the new note back to the App.
-//- Add new note to an array.
-//- Take array and render seperate Note components for each item.
-
-//2. Implement the delete note functionality.
-//- Callback from the Note component to trigger a delete function.
-//- Use the filter function to filter out the item that needs deletion.
-//- Pass a id over to the Note component, pass it back to the App when deleting.
-
-//This is the end result you're aiming for:
-//https://pogqj.csb.app/
+import AddIcon from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
+import Zoom from "@material-ui/core/Zoom";
 
 function CreateArea(props) {
-  const [input, setInput] = useState({
+  const [isExpanded, setExpanded] = useState(false);
+
+  const [note, setNote] = useState({
     title: "",
     content: ""
   });
@@ -24,30 +14,52 @@ function CreateArea(props) {
   function handleChange(event) {
     const { name, value } = event.target;
 
-    setInput((prevValue) => {
+    setNote((prevNote) => {
       return {
-        ...prevValue,
+        ...prevNote,
         [name]: value
       };
     });
   }
 
   function submitNote(event) {
-    props.onAdd(input);
+    props.onAdd(note);
+    setNote({
+      title: "",
+      content: ""
+    });
     event.preventDefault();
+  }
+
+  function expand() {
+    setExpanded(true);
   }
 
   return (
     <div>
-      <form>
-        <input onChange={handleChange} name="title" placeholder="Title" />
+      <form className="create-note">
+        {isExpanded && (
+          <input
+            name="title"
+            onChange={handleChange}
+            value={note.title}
+            placeholder="Title"
+          />
+        )}
+
         <textarea
-          onChange={handleChange}
           name="content"
+          onClick={expand}
+          onChange={handleChange}
+          value={note.content}
           placeholder="Take a note..."
-          rows="3"
+          rows={isExpanded ? 3 : 1}
         />
-        <button onClick={submitNote}>Add</button>
+        <Zoom in={isExpanded}>
+          <Fab onClick={submitNote}>
+            <AddIcon />
+          </Fab>
+        </Zoom>
       </form>
     </div>
   );
